@@ -138,7 +138,7 @@
   <script>
     // Cargar los usuarios desde el servidor
     window.onload = function() {
-      fetch('/users')
+      fetch('/api/gente')
         .then(response => response.json())
         .then(users => {
           const tableBody = document.getElementById('TableBody');

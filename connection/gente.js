@@ -10,6 +10,25 @@ class User {
         this.fechadecontratacion = fechadecontratacion;
     }
 }
+const express = require('express');
+const db = require('./db'); 
+const app = express();
+
+app.get('/api/gente', (req, res) => {
+    const query = 'SELECT username, telefono, puesto, Fechadecontratacion FROM AWS.users';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error al obtener los datos:', err);
+            return res.status(500).json({ error: 'Error en el servidor' });
+        }
+        res.json(results);
+    });
+});
+
+app.listen(3000, () => {
+    console.log('Servidor ejecutándose en el puerto 3000');
+});
+
 
 function getAll() {
     return new Promise((resolve, reject) => {

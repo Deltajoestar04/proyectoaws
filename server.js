@@ -8,6 +8,7 @@ app.use(express.static('public'));
 app.use(express.json());  
 app.use(express.urlencoded({ extended: true })); 
 
+
 const connection = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
@@ -24,7 +25,7 @@ connection.connect(err => {
     console.log('Connected to the database!');
 });
 
-app.get('/users', (req, res) => {
+app.get('/aws.users', (req, res) => {
     const query = 'SELECT id, username, telefono, puesto, fechadecontratacion FROM aws.users';
     
     connection.query(query, (err, result) => {
