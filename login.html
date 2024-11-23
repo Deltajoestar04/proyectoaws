@@ -88,27 +88,23 @@
         <div class="error" id="message"></div>
     </div>
 
-    <script type="module" src="pantallas/control/controlu.js">
-        // Obtener la lista de usuarios desde la clase controlu
-        import { controlu } from 'pantallas/control/controlu.js'; // Ajusta la ruta según corresponda
-    
+    <script>
+        const usuarioValido = "Juan";
+        const contrasenaValida = "12345";
+
         document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+            event.preventDefault(); // Evita la recarga de la página
             const usuario = document.getElementById("usuario").value;
             const contrasena = document.getElementById("contrasena").value;
             const mensaje = document.getElementById("message");
 
-            // Buscar el usuario en la lista
-            const usuarioEncontrado = controlu.listausers.find(user => user.getusername() === usuario);
-
-            // Verificar si el usuario existe y la contraseña es correcta
-            if (usuarioEncontrado && usuarioEncontrado.password === contrasena) {
+            if (usuario === usuarioValido && contrasena === contrasenaValida) {
                 mensaje.style.color = "green";
                 mensaje.textContent = "Inicio de sesión exitoso.";
                 window.location.href = "pantallas/pantalla.html";
 
                 setTimeout(() => {
-                    window.close(); // Solo si la ventana fue abierta con window.open()
+                    window.close(); 
                 }, 500);
             } else {
                 mensaje.textContent = "Usuario y/o contraseña son incorrectos";
