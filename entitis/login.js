@@ -23,7 +23,7 @@ db.connect((err) => {
 });
 
 // Función 'entrar' 
-app.post("/login", (req, res) => {
+app.post("/login.html", (req, res) => {
   const { username, password } = req.body;
 
   const query = "SELECT * FROM users WHERE username = ? AND password = ?";

@@ -1,68 +1,77 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000000;
-            padding: 20px;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .form-container {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-        input[type="text"], input[type="date"], input[type="tel"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="submit"] {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo Usuario</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
+  <h1>Agregar Nuevo Usuario</h1>
+  <div class="form-container">
+    <label for="username">Nombre de Usuario:</label>
+    <input type="text" id="username" placeholder="Ingrese nombre" required>
 
-<div class="form-container">
-    <h2>Nuevo Registro</h2>
-    <form action="/addUser" method="POST">
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario" required>
+    <label for="telefono">Teléfono:</label>
+    <input type="text" id="telefono" placeholder="Ingrese teléfono" required>
 
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono" required>
+    <label for="puesto">Puesto:</label>
+    <input type="text" id="puesto" placeholder="Ingrese puesto" required>
 
-        <label for="posicion">Posición:</label>
-        <input type="text" id="posicion" name="posicion" required>
+    <button id="saveButton">Guardar</button>
+  </div>
 
-        <label for="fechaContratacion">Fecha de Contratación:</label>
-        <input type="date" id="fechaContratacion" name="fechaContratacion" required>
-
-        <input type="submit" value="Enviar">
-
-    </form>
-    
-      </script>
-</div>
-
+  <script src="control/nuevor.js"></script>
 </body>
 </html>

@@ -108,6 +108,8 @@
 </style>
 </head>
 <body>
+</head>
+<body>
   <h1>Data base</h1>
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Buscar usuario...">
@@ -121,70 +123,20 @@
         <th>Nombre</th>
         <th>Teléfono</th>
         <th>Puesto</th>
-        <th>Fecha de Contratación</th>
       </tr>
     </thead>
-    <tbody id="TableBody">
-
+    <tbody id="userTableBody">
+      <!-- Filas de usuarios generadas aquí -->
     </tbody>
   </table>
+  <button class="new-user-button" id="newUserButton">Nuevo Usuario</button>
 
-  <!-- Botones de Guardar y Borrar -->
-  <div class="buttons">
-    <button id="saveButton">Añadir Usuario</button>
-    <button id="deleteButton">Borrar Usuario</button>
-  </div>
-
-  <script>
-    // Cargar los usuarios desde el servidor
-    window.onload = function() {
-      fetch('/api/gente')
-        .then(response => response.json())
-        .then(users => {
-          const tableBody = document.getElementById('TableBody');
-          users.forEach(user => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-              <td>${user.username}</td>
-              <td>${user.telefono}</td>
-              <td>${user.puesto}</td>
-              <td>${user.fechadecontratacion}</td>
-            `;
-            tableBody.appendChild(row);
-          });
-        })
-        .catch(error => {
-          alert('Error al cargar los usuarios:', error);
-          console.error('Error al cargar los usuarios:', error);
-        });
-    };
-
-    // Funcionalidad de búsqueda
-    document.getElementById('searchButton').addEventListener('click', function() {
-      const searchValue = document.getElementById('searchInput').value.toLowerCase();
-      const rows = document.querySelectorAll('#TableBody tr');
-
-      rows.forEach(row => {
-        const cells = row.querySelectorAll('td');
-        const name = cells[0].textContent.toLowerCase();
-
-        if (name.includes(searchValue)) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
-      });
-    });
-
+  <script type="module">
     // Redirigir a la pantalla de agregar usuario
-    document.getElementById('saveButton').addEventListener('click', function() {
+    document.getElementById('newUserButton').addEventListener('click', function () {
       window.location.href = 'nuevor.html';
     });
-
-    // Eliminar usuario seleccionado
-    document.getElementById('deleteButton').addEventListener('click', function() {
-      alert('Funcionalidad de borrar no implementada');
-    });
   </script>
+  <script type="module" src="control/script.js"></script>
 </body>
 </html>
