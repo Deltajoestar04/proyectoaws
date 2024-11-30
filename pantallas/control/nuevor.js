@@ -3,6 +3,6 @@ document.getElementById('saveButton').addEventListener('click', function () {
     const telefono = document.getElementById('telefono').value;
     const puesto = document.getElementById('puesto').value;
   
-    window.location.href = `pantalla.html?usuario=${username}&telefono=${telefono}&posicion=${puesto}`;
+    window.location.href = `pantallaU.html?usuario=${username}&telefono=${telefono}&posicion=${puesto}`;
   });
   
