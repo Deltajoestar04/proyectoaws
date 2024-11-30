@@ -36,7 +36,8 @@ window.onload = function () {
     newRow.innerHTML = `
       <td>${username}</td>
       <td>${telefono}</td>
-      <td>${puesto}</td>`;
+      <td>${puesto}</td>
+    `;
     tableBody.appendChild(newRow); // Añadir la fila a la tabla
   }
 };
@@ -69,3 +70,4 @@ document.getElementById('deleteButton').addEventListener('click', function () {
     // Función para eliminar el usuario
   }
 });
+
