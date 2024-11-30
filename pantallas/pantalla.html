@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pantalla</title>
+  <link rel="stylesheet" href="cssD/tablas.css">
+</head>
+<body>
+  <h1>Data base</h1>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Buscar usuario...">
+    <button id="searchButton">Buscar</button>
+  </div>
+
+
+  <h2>Lista de Usuarios</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Puesto</th>
+      </tr>
+    </thead>
+    <tbody id="userTableBody">
+      <!-- Filas de usuarios generadas aquí -->
+      <tr>
+        <td>Juan Pérez</td>
+        <td>5512345678</td>
+        <td>Super intendente</td>
+      </tr>
+      <tr>
+        <td>María López</td>
+        <td>5519876543</td>
+        <td>Trabajador</td>
+      </tr>
+      <tr>
+        <td>Carlos García</td>
+        <td>5511122233</td>
+        <td>Existe</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="new-user-button" id="newUserButton">Nuevo Usuario</button>
+
+  <script type="module">
+    document.getElementById('newUserButton').addEventListener('click', function () {
+      window.location.href = 'nuevor.html';
+    });
+
+    document.getElementById('userTableBody').addEventListener('dblclick', function(event) {
+      if (event.target.tagName.toLowerCase() === 'td') {
+        const confirmDelete = confirm("¿Estás seguro de que deseas borrar esta información?");
+        if (confirmDelete) {
+          const row = event.target.parentElement;
+          row.remove();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
