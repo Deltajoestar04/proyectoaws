@@ -1,4 +1,4 @@
-import { controllu } from './controllu';
+import { controlC } from './controlC';
 
 window.onload = function () {
   const tableBody = document.getElementById('userTableBody');
@@ -10,7 +10,7 @@ window.onload = function () {
     // Limpiar la tabla antes de agregar los nuevos resultados
     tableBody.innerHTML = '';
 
-    controllu.listalugares.forEach(lugar => {
+    controlC.listalugares.forEach(lugar => {
       const row = document.createElement('tr');
       row.innerHTML = `
         <td>${lugar.ciudad}</td>
