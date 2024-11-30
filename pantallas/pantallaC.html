@@ -7,28 +7,32 @@
   <link rel="stylesheet" href="cssD/tablas.css">
 </head>
 <body>
-  <h1>Data Base</h1>
+    <title>Data Base</title>
+    <link rel="stylesheet" href="cssD/tablas.css">
+  </head>
+  <body>
+    <h1>Data Base</h1>
+    
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Buscar lugar...">
+      <button id="searchButton">Buscar</button>
+    </div>
   
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Buscar usuario...">
-    <button id="searchButton">Buscar</button>
-  </div>
+    <h2>Sucursales</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ciudad</th>
+          <th>Estado</th>
+          <th>Teléfono</th>
+          <th>Estado actual</th>
+        </tr>
+      </thead>
+      <tbody id="userTableBody">
+        <!-- Filas de lugares generadas dinámicamente -->
+      </tbody>
+    </table>
 
-  <h2>Sucursales</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Ciudad</th>
-        <th>Estados</th>
-        <th>Teléfono</th>
-        <th>Estado actual</th>
-      </tr>
-    </thead>
-    <tbody id="userTableBody">
-      <!-- Filas de usuarios generadas dinámicamente -->
-    </tbody>
-  </table>
-  
   <button class="new-user-button" id="newUserButton">Nuevo establecimiento</button>
 
   <!-- Vincula correctamente el archivo JavaScript externo -->
@@ -37,7 +41,7 @@
   <script type="module">
     // Redirigir al formulario de nuevo usuario
     document.getElementById('newUserButton').addEventListener('click', () => {
-      window.location.href = 'nuevor.html';
+      window.location.href = 'nuevoC.html';
     });
 
     // Funcionalidad para eliminar filas con doble clic

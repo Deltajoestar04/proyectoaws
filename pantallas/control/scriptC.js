@@ -1,10 +1,11 @@
-import { controllu } from "./controllu";
+import { controllu } from './controllu';
+
 window.onload = function () {
   const tableBody = document.getElementById('userTableBody');
   const searchButton = document.getElementById('searchButton');
   const searchInput = document.getElementById('searchInput');
 
-  // Cargar los lugares desde controlu y generar filas de la tabla
+  // Cargar los lugares desde controllu y generar filas de la tabla
   function cargarTabla() {
     // Limpiar la tabla antes de agregar los nuevos resultados
     tableBody.innerHTML = '';
@@ -31,10 +32,10 @@ window.onload = function () {
       const ciudad = cells[0].textContent.toLowerCase(); // Ciudad
       const estado = cells[1].textContent.toLowerCase(); // Estado
       const telefono = cells[2].textContent.toLowerCase(); // Teléfono
-      const estado_act = cells[3].textContent.toLowerCase(); // estado actual de la compa;ia
+      const estado_act = cells[3].textContent.toLowerCase(); // estado actual de la empresa
 
       // Verifica si el texto de búsqueda coincide con la ciudad, estado o teléfono
-      if (ciudad.includes(searchQuery) || estado.includes(searchQuery) || telefono.includes(searchQuery)) {
+      if (ciudad.includes(searchQuery) || estado.includes(searchQuery) || telefono.includes(searchQuery) || estado_act.includes(searchQuery)) {
         row.style.display = ''; // Mostrar fila si coincide
       } else {
         row.style.display = 'none'; // Ocultar fila si no coincide
@@ -47,11 +48,11 @@ window.onload = function () {
     const ciudad = prompt("Ingresa la ciudad:");
     const estado = prompt("Ingresa el estado:");
     const telefono = prompt("Ingresa el teléfono:");
-    const estado_act = prompt("Ingresa el estado actaul de la empresa:");
+    const estado_act = prompt("Ingresa el estado actual de la empresa:");
 
     if (ciudad && estado && telefono && estado_act) {
       // Llamar a la función para agregar el lugar
-      controlu.agregar(ciudad, estado, telefono && estado_act);
+      controllu.agregar(ciudad, estado, telefono, estado_act);  // Corregido aquí
       cargarTabla(); // Volver a cargar la tabla con los nuevos datos
     }
   });
