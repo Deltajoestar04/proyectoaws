@@ -49,6 +49,24 @@
         }
       }
     });
+    document.getElementById('searchButton').addEventListener('click', function() {
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase(); // Obtener el texto del input
+      const rows = document.querySelectorAll('#userTableBody tr'); // Obtener todas las filas de la tabla
+
+      rows.forEach(row => {
+        const cells = row.getElementsByTagName('td'); // Obtener todas las celdas de la fila
+        const name = cells[0].textContent.toLowerCase(); // Nombre del usuario
+        const phone = cells[1].textContent.toLowerCase(); // Teléfono del usuario
+        const position = cells[2].textContent.toLowerCase(); // Puesto del usuario
+
+        // Verifica si el texto de búsqueda coincide con el nombre, teléfono o puesto
+        if (name.includes(searchQuery) || phone.includes(searchQuery) || position.includes(searchQuery)) {
+          row.style.display = ''; // Mostrar fila si coincide
+        } else {
+          row.style.display = 'none'; // Ocultar fila si no coincide
+        }
+      });
+    });
   </script>
 </body>
 </html>
