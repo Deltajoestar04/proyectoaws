@@ -1,54 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Base</title>
-  <link rel="stylesheet" href="cssD/tablas.css">
+  <title>Redirección con Botones</title>
+  <link rel="stylesheet" href="cssD/botones.css">
+
 </head>
 <body>
-  <h1>Data Base</h1>
-  
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Buscar usuario...">
-    <button id="searchButton">Buscar</button>
+
+  <div class="button-container">
+    <h1>Selecciona una opción</h1>
+    <button onclick="window.location.href='pantalla1.html'">Ir a Pantalla 1</button>
+    <button onclick="window.location.href='pantalla2.html'">Ir a Pantalla 2</button>
+    <button onclick="window.location.href='pantalla3.html'">Ir a Pantalla 3</button>
+    <button onclick="window.location.href='pantalla4.html'">Ir a Pantalla 4</button>
   </div>
 
-  <h2>Lista de Usuarios</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Teléfono</th>
-        <th>Puesto</th>
-      </tr>
-    </thead>
-    <tbody id="userTableBody">
-      <!-- Filas de usuarios generadas dinámicamente -->
-    </tbody>
-  </table>
-  
-  <button class="new-user-button" id="newUserButton">Nuevo Usuario</button>
-
-  <!-- Vincula correctamente el archivo JavaScript externo -->
-  <script type="module" src="./control/script.js" defer></script>
-  
-  <script type="module">
-    // Redirigir al formulario de nuevo usuario
-    document.getElementById('newUserButton').addEventListener('click', () => {
-      window.location.href = 'nuevor.html';
-    });
-
-    // Funcionalidad para eliminar filas con doble clic
-    document.getElementById('userTableBody').addEventListener('dblclick', (event) => {
-      if (event.target.tagName.toLowerCase() === 'td') {
-        const confirmDelete = confirm("¿Estás seguro de que deseas borrar esta información?");
-        if (confirmDelete) {
-          const row = event.target.parentElement;
-          row.remove();
-        }
-      }
-    });
-  </script>
 </body>
 </html>
