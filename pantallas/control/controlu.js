@@ -8,4 +8,5 @@ export const controlu = {
   agregar: function (username, password, telefono, puesto) {
     this.listausers.push({ username, telefono, puesto });
   }
+
 };
