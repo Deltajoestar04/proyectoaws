@@ -61,3 +61,19 @@ input[type="text"], input[type="password"] {
   text-align: center;
   margin-top: 10px;
 }
+  .btn-menu:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilos del fondo cuadrado detrás del menú */
+  .menu-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #4CAF50; /* Fondo verde detrás del cuadro */
+    z-index: -1; /* Asegura que el fondo esté detrás de los botones */
+    border-radius: 12px; /* Bordes redondeados en el fondo */
+  }
