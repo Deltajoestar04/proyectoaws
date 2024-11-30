@@ -1,13 +1,24 @@
-import { user, controlu } from './controlu.js';
+import { controlu } from './controlu.js';
 
-console.log(controlu.listausers);
+console.log("Lista de usuarios inicial:", controlu.listausers);
 
 window.onload = function () {
   const tableBody = document.getElementById('userTableBody'); // ID correcto
 
-  // Obtener la lista de usuarios desde controlu.listausers
-  const users = controlu.listausers;
+  // Verifica que `tableBody` exista
+  if (!tableBody) {
+    console.error("No se encontró el elemento con ID 'userTableBody'");
+    return;
+  }
 
+  // Cargar usuarios desde localStorage o usar los predeterminados
+  const users = JSON.parse(localStorage.getItem('users')) || controlu.listausers;
+
+  if (users.length === 0) {
+    console.warn("La lista de usuarios está vacía");
+  }
+
+  // Generar filas dinámicamente
   users.forEach(user => {
     const row = document.createElement('tr'); // Crear una fila
 
@@ -21,6 +32,8 @@ window.onload = function () {
     tableBody.appendChild(row); // Añadir la fila a la tabla
   });
 
+  console.log("Filas generadas en la tabla");
+
   // Obtener los parámetros de la URL y agregar el nuevo usuario si existen
   const params = new URLSearchParams(window.location.search);
   const username = params.get('usuario');
@@ -29,7 +42,11 @@ window.onload = function () {
 
   if (username && telefono && puesto) {
     // Agregar el nuevo usuario a la lista
-    controlu.agregar(username, 'defaultPassword', telefono, puesto); // Contraseña por defecto
+    controlu.agregar(username, 'defaultPassword', telefono, puesto);
+
+    // Actualizar localStorage con el nuevo usuario
+    const updatedUsers = controlu.listausers;
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
 
     // Volver a cargar la tabla con el nuevo usuario
     const newRow = document.createElement('tr');
@@ -38,36 +55,30 @@ window.onload = function () {
       <td>${telefono}</td>
       <td>${puesto}</td>
     `;
-    tableBody.appendChild(newRow); // Añadir la fila a la tabla
+    tableBody.appendChild(newRow);
+    console.log(`Nuevo usuario agregado: ${username}, ${telefono}, ${puesto}`);
   }
 };
 
-// Funcionalidad de búsqueda
-document.getElementById('searchButton').addEventListener('click', function () {
-  const searchValue = document.getElementById('searchInput').value.toLowerCase();
-  const rows = document.querySelectorAll('#userTableBody tr');
+// Funcionalidad de eliminación y persistencia
+document.getElementById('userTableBody').addEventListener('dblclick', function(event) {
+  if (event.target.tagName.toLowerCase() === 'td') {
+    const confirmDelete = confirm("¿Estás seguro de que deseas borrar esta información?");
+    if (confirmDelete) {
+      const row = event.target.parentElement;
 
-  if (searchValue === '') {
-    rows.forEach(row => {
-      row.style.display = ''; // Muestra todas las filas si no hay búsqueda
-    });
-  } else {
-    rows.forEach(row => {
-      const name = row.cells[0].textContent.toLowerCase();
-      row.style.display = name.includes(searchValue) ? '' : 'none';
-    });
+      // Obtener el nombre del usuario a eliminar
+      const usernameToDelete = row.cells[0].textContent;
+
+      // Eliminar el usuario de la lista
+      const updatedUsers = controlu.listausers.filter(user => user.username !== usernameToDelete);
+      controlu.listausers = updatedUsers;
+
+      // Actualizar el localStorage
+      localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+      // Eliminar la fila de la tabla
+      row.remove();
+    }
   }
 });
-
-// Redirigir a la pantalla de agregar usuario
-document.getElementById('saveButton').addEventListener('click', function () {
-  window.location.href = 'nuevor.html';
-});
-
-// Mensaje para la funcionalidad de borrar
-document.getElementById('deleteButton').addEventListener('click', function () {
-  if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-    // Función para eliminar el usuario
-  }
-});
-
