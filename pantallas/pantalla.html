@@ -5,6 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirección con Botones</title>
   <link rel="stylesheet" href="cssD/botones.css">
+  <style>
+     body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Estilos del contenedor del menú */
+  .menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  /* Estilos del cuadro del menú */
+  .menu-box {
+    background-color: #f0f0f0;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+    background-color: #ffffff; /* Fondo blanco para el cuadro */
+    border: 2px solid #4CAF50; /* Borde verde */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Estilos del encabezado */
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  /* Estilos de los botones del menú */
+  .button-container {
+    display: flex;
+    flex-direction: column; /* Alineación vertical de los botones */
+    gap: 20px;
+  }
+  
+  /* Botones */
+  .btn-menu {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra en los botones */
+  }
+  
+  /* Efecto hover para los botones */
+  .btn-menu:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilos del fondo cuadrado detrás del menú */
+  .menu-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #4CAF50; /* Fondo verde detrás del cuadro */
+    z-index: -1; /* Asegura que el fondo esté detrás de los botones */
+    border-radius: 12px; /* Bordes redondeados en el fondo */
+  }
+  
+  </style>
 
 </head>
 <body>
