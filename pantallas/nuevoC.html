@@ -100,8 +100,15 @@
     <input type="text" id="estado_act" placeholder="..." required>
 
     <button id="saveButton">Guardar</button>
+    <button id="regreso">Cancelar</button>
   </div>
 
   <script src="control/nuevoC.js"></script>
+  <script type="module">
+    document.getElementById('regreso').addEventListener('click', () => {
+        const rutaArchivo = './pantallaC.html'; 
+        window.location.href = rutaArchivo;
+      });
+    </script>
 </body>
 </html>
