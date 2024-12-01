@@ -1,62 +1,87 @@
 import { controlC } from './controlC.js';
 
+console.log("Lista inicial de lugares:", controlC.listalugares);
+
 window.onload = function () {
-  const tableBody = document.getElementById('userTableBody');
-  const searchButton = document.getElementById('searchButton');
-  const searchInput = document.getElementById('searchInput');
+  const tableBody = document.getElementById('userTableBody'); // ID correcto
 
-  // Cargar los lugares desde controllu y generar filas de la tabla
-  function cargarTabla() {
-    // Limpiar la tabla antes de agregar los nuevos resultados
-    tableBody.innerHTML = '';
-
-    controlC.listalugares.forEach(lugar => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${lugar.ciudad}</td>
-        <td>${lugar.estado}</td>
-        <td>${lugar.telefono}</td>
-        <td>${lugar.estado_act}</td>
-      `;
-      tableBody.appendChild(row);
-    });
+  // Verifica que `tableBody` exista
+  if (!tableBody) {
+    console.error("No se encontró el elemento con ID 'userTableBody'");
+    return;
   }
 
-  // Filtrar lugares según el texto ingresado
-  searchButton.addEventListener('click', function() {
-    const searchQuery = searchInput.value.toLowerCase(); // Obtener el texto del input
-    const rows = document.querySelectorAll('#userTableBody tr'); // Obtener todas las filas de la tabla
+  // Cargar lugares desde localStorage o usar los predeterminados
+  const lugares = JSON.parse(localStorage.getItem('lugares')) || controlC.listalugares;
 
-    rows.forEach(row => {
-      const cells = row.getElementsByTagName('td'); // Obtener todas las celdas de la fila
-      const ciudad = cells[0].textContent.toLowerCase(); // Ciudad
-      const estado = cells[1].textContent.toLowerCase(); // Estado
-      const telefono = cells[2].textContent.toLowerCase(); // Teléfono
-      const estado_act = cells[3].textContent.toLowerCase(); // estado actual de la empresa
+  if (lugares.length === 0) {
+    console.warn("La lista de lugares está vacía");
+  }
 
-      // Verifica si el texto de búsqueda coincide con la ciudad, estado o teléfono
-      if (ciudad.includes(searchQuery) || estado.includes(searchQuery) || telefono.includes(searchQuery) || estado_act.includes(searchQuery)) {
-        row.style.display = ''; // Mostrar fila si coincide
-      } else {
-        row.style.display = 'none'; // Ocultar fila si no coincide
-      }
-    });
+  // Generar filas dinámicamente
+  lugares.forEach(lugar => {
+    const row = document.createElement('tr'); // Crear una fila
+
+    // Crear columnas y añadir datos
+    row.innerHTML = `
+      <td>${lugar.ciudad}</td>
+      <td>${lugar.estado}</td>
+      <td>${lugar.telefono}</td>
+      <td>${lugar.estado_act}</td>
+    `;
+
+    tableBody.appendChild(row); // Añadir la fila a la tabla
   });
 
-  // Agregar un nuevo lugar (simulando una entrada de formulario)
-  document.getElementById('newUserButton').addEventListener('click', () => {
-    const ciudad = prompt("Ingresa la ciudad:");
-    const estado = prompt("Ingresa el estado:");
-    const telefono = prompt("Ingresa el teléfono:");
-    const estado_act = prompt("Ingresa el estado actual de la empresa:");
+  console.log("Filas generadas en la tabla");
 
-    if (ciudad && estado && telefono && estado_act) {
-      // Llamar a la función para agregar el lugar
-      controllu.agregar(ciudad, estado, telefono, estado_act);  // Corregido aquí
-      cargarTabla(); // Volver a cargar la tabla con los nuevos datos
-    }
-  });
+  // Obtener los parámetros de la URL y agregar el nuevo lugar si existen
+  const params = new URLSearchParams(window.location.search);
+  const ciudad = params.get('ciudad');
+  const estado = params.get('estado');
+  const telefono = params.get('telefono');
+  const estado_act = params.get('estado_act');
 
-  // Cargar los datos iniciales al cargar la página
-  cargarTabla();
+  if (ciudad && estado && telefono && estado_act) {
+    // Agregar el nuevo lugar a la lista
+    controlC.agregar(ciudad, estado, telefono, estado_act);
+
+    // Actualizar localStorage con el nuevo lugar
+    const updatedLugares = controlC.listalugares;
+    localStorage.setItem('lugares', JSON.stringify(updatedLugares));
+
+    // Volver a cargar la tabla con el nuevo lugar
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+      <td>${ciudad}</td>
+      <td>${estado}</td>
+      <td>${telefono}</td>
+      <td>${estado_act}</td>
+    `;
+    tableBody.appendChild(newRow);
+    console.log(`Nuevo lugar agregado: ${ciudad}, ${estado}, ${telefono}, ${estado_act}`);
+  }
 };
+
+// Funcionalidad de eliminación y persistencia
+document.getElementById('userTableBody').addEventListener('dblclick', function(event) {
+  if (event.target.tagName.toLowerCase() === 'td') {
+    const confirmDelete = confirm("¿Estás seguro de que deseas borrar este lugar?");
+    if (confirmDelete) {
+      const row = event.target.parentElement;
+
+      // Obtener la ciudad del lugar a eliminar
+      const ciudadToDelete = row.cells[0].textContent;
+
+      // Eliminar el lugar de la lista
+      const updatedLugares = controlC.listalugares.filter(lugar => lugar.ciudad !== ciudadToDelete);
+      controlC.listalugares = updatedLugares;
+
+      // Actualizar el localStorage
+      localStorage.setItem('lugares', JSON.stringify(updatedLugares));
+
+      // Eliminar la fila de la tabla
+      row.remove();
+    }
+  }
+});
