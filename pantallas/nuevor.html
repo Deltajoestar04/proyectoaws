@@ -98,8 +98,16 @@
     <input type="text" id="puesto" placeholder="Ingrese puesto" required>
 
     <button id="saveButton">Guardar</button>
+    <button id="regreso">Cancelar</button>
+
   </div>
 
   <script src="control/nuevor.js"></script>
+  <script type="module">
+    document.getElementById('regreso').addEventListener('click', () => {
+        const rutaArchivo = './pantallaU.html'; 
+        window.location.href = rutaArchivo;
+      });
+    </script>
 </body>
 </html>

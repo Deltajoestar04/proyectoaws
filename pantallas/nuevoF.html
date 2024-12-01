@@ -93,13 +93,20 @@
     <label for="descripcion">Descripción:</label>
     <input type="text" id="descripcion" placeholder="descripcion.." required>
 
-    <label for="fecha">FSecha:</label>
+    <label for="fecha">Fecha:</label>
     <input type="text" id="fecha" placeholder="Ingrese fecha del evento" required>
 
     <button id="saveButton">Guardar</button>
-    
+    <button id="regreso">Cancelar</button>
+
   </div>
 
   <script src="control/nuevoF.js"></script>
+  <script type="module">
+    document.getElementById('regreso').addEventListener('click', () => {
+        const rutaArchivo = './pantallaF.html'; 
+        window.location.href = rutaArchivo;
+      });
+    </script>
 </body>
 </html>
