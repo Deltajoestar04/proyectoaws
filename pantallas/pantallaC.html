@@ -33,68 +33,39 @@
 
   <script type="module" src="./control/scriptC.js" defer></script>
   <script type="module">
-    import { controlC } from './controlC.js';
+    // Redirigir al formulario de nuevo usuario
+    document.getElementById('newUserButton').addEventListener('click', () => {
+      window.location.href = 'nuevor.html';
+    });
 
-    window.onload = function () {
-      const tableBody = document.getElementById('userTableBody');
-      const searchButton = document.getElementById('searchButton');
-      const searchInput = document.getElementById('searchInput');
-
-      // Cargar los lugares desde controlC y generar filas de la tabla
-      function cargarTabla() {
-        // Limpiar la tabla antes de agregar los nuevos resultados
-        tableBody.innerHTML = '';
-
-        controlC.listalugares.forEach(lugar => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${lugar.ciudad}</td>
-            <td>${lugar.estado}</td>
-            <td>${lugar.telefono}</td>
-            <td>${lugar.estado_act}</td>
-          `;
-          tableBody.appendChild(row);
-        });
+    // Funcionalidad para eliminar filas con doble clic
+    document.getElementById('userTableBody').addEventListener('dblclick', (event) => {
+      if (event.target.tagName.toLowerCase() === 'td') {
+        const confirmDelete = confirm("¿Estás seguro de que deseas borrar esta información?");
+        if (confirmDelete) {
+          const row = event.target.parentElement;
+          row.remove();
+        }
       }
+    });
+    document.getElementById('searchButton').addEventListener('click', function() {
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase(); // Obtener el texto del input
+      const rows = document.querySelectorAll('#userTableBody tr'); // Obtener todas las filas de la tabla
 
-      // Cargar la tabla inicialmente al cargar la página
-      cargarTabla();
+      rows.forEach(row => {
+        const cells = row.getElementsByTagName('td'); // Obtener todas las celdas de la fila
+        const name = cells[0].textContent.toLowerCase(); // Nombre del usuario
+        const phone = cells[1].textContent.toLowerCase(); // Teléfono del usuario
+        const position = cells[2].textContent.toLowerCase(); // Puesto del usuario
 
-      // Filtrar lugares según el texto ingresado
-      searchButton.addEventListener('click', function() {
-        const searchQuery = searchInput.value.toLowerCase(); // Obtener el texto del input
-        const rows = document.querySelectorAll('#userTableBody tr'); // Obtener todas las filas de la tabla
-
-        rows.forEach(row => {
-          const cells = row.getElementsByTagName('td'); // Obtener todas las celdas de la fila
-          const ciudad = cells[0].textContent.toLowerCase(); // Ciudad
-          const estado = cells[1].textContent.toLowerCase(); // Estado
-          const telefono = cells[2].textContent.toLowerCase(); // Teléfono
-          const estado_act = cells[3].textContent.toLowerCase(); // estado actual de la empresa
-
-          // Verifica si el texto de búsqueda coincide con la ciudad, estado, teléfono o estado actual
-          const match = ciudad.includes(searchQuery) || estado.includes(searchQuery) || telefono.includes(searchQuery) || estado_act.includes(searchQuery);
-
-          row.style.display = match ? '' : 'none'; // Mostrar u ocultar la fila según el resultado de la búsqueda
-        });
-      });
-
-      // Redirigir al formulario de nuevo usuario
-      document.getElementById('newUserButton').addEventListener('click', () => {
-        window.location.href = 'nuevoC.html';
-      });
-
-      // Funcionalidad para eliminar filas con doble clic
-      tableBody.addEventListener('dblclick', (event) => {
-        if (event.target.tagName.toLowerCase() === 'td') {
-          const confirmDelete = confirm("¿Estás seguro de que deseas borrar esta información?");
-          if (confirmDelete) {
-            const row = event.target.parentElement;
-            row.remove();
-          }
+        // Verifica si el texto de búsqueda coincide con el nombre, teléfono o puesto
+        if (name.includes(searchQuery) || phone.includes(searchQuery) || position.includes(searchQuery)) {
+          row.style.display = ''; // Mostrar fila si coincide
+        } else {
+          row.style.display = 'none'; // Ocultar fila si no coincide
         }
       });
-    };
+    });
   </script>
 </body>
 </html>
