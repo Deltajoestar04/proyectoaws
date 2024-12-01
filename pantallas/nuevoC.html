@@ -5,6 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Informacion de Sucursal</title>
   <link rel="stylesheet" href="cssD/tablas.css">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #000000, #000000);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Contenedor del formulario */
+    .form-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+
+    .form-container label {
+      font-weight: bold;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+
+    .form-container input:focus {
+      border-color: #74b9ff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(116, 185, 255, 0.5);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #45a049;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+      box-shadow: 0 5px 10px rgba(92, 82, 227, 0.3);
+    }
+
+    button:active {
+      background-color: #45a049;
+      box-shadow: 0 3px 6px rgba(74, 61, 212, 0.4);
+    }
+  </style>
 </head>
 <body>
   <h1>Agregar Informacion de Nueva Sucursal</h1>

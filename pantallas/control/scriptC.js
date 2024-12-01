@@ -1,4 +1,4 @@
-import { controlC } from './controlC';
+import { controlC } from './controlC.js';
 
 window.onload = function () {
   const tableBody = document.getElementById('userTableBody');

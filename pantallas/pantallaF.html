@@ -14,13 +14,14 @@
     <button id="searchButton">Buscar</button>
   </div>
 
-  <h2>Lista de Involucrados</h2>
+  <h2>Lista de Eventos de empresa</h2>
   <table class="table">
     <thead>
       <tr>
-        <th>Nombre</th>
-        <th>Teléfono</th>
-        <th>Puesto</th>
+        <th>Nombre del evento</th>
+        <th>Descipcion del evento</th>
+        <th>Fecha del evento</th>
+        
       </tr>
     </thead>
     <tbody id="userTableBody">
@@ -28,14 +29,14 @@
     </tbody>
   </table>
   
-  <button class="new-user-button" id="newUserButton">Nuevo Involucrado</button>
+  <button class="new-user-button" id="newUserButton">Nuevo Evento</button>
 
   <!-- Vincula correctamente el archivo JavaScript externo -->
-  <script type="module" src="./control/scriptU.js" defer></script>
+  <script type="module" src="./control/scriptF.js" defer></script>
   
   <script type="module">
   document.getElementById('newUserButton').addEventListener('click', () => {
-      const rutaArchivo = './nuevor.html'; // Ajusta la ruta si es necesario
+      const rutaArchivo = './nuevoF.html'; // Ajusta la ruta si es necesario
       window.location.href = rutaArchivo;
     });
 
@@ -55,12 +56,12 @@
 
       rows.forEach(row => {
         const cells = row.getElementsByTagName('td'); // Obtener todas las celdas de la fila
-        const name = cells[0].textContent.toLowerCase(); // Nombre del usuario
-        const phone = cells[1].textContent.toLowerCase(); // Teléfono del usuario
-        const position = cells[2].textContent.toLowerCase(); // Puesto del usuario
+        const name = cells[0].textContent.toLowerCase(); // Nombre del evento
+        const descrip = cells[1].textContent.toLowerCase(); // descripcion
+        const date = cells[2].textContent.toLowerCase(); // fecha
 
         // Verifica si el texto de búsqueda coincide con el nombre, teléfono o puesto
-        if (name.includes(searchQuery) || phone.includes(searchQuery) || position.includes(searchQuery)) {
+        if (name.includes(searchQuery) || descrip.includes(searchQuery) || date.includes(searchQuery)) {
           row.style.display = ''; // Mostrar fila si coincide
         } else {
           row.style.display = 'none'; // Ocultar fila si no coincide

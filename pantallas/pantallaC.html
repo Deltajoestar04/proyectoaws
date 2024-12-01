@@ -33,9 +33,10 @@
 
   <script type="module" src="./control/scriptC.js" defer></script>
   <script type="module">
-    // Redirigir al formulario de nuevo usuario
-    document.getElementById('newUserButton').addEventListener('click', () => {
-      window.location.href = 'nuevoC.html';
+   document.getElementById('newUserButton').addEventListener('click', () => {
+      // Cambiar la ruta según la ubicación del archivo nuevoC.html
+      const rutaArchivo = './nuevoC.html'; // Ajusta la ruta si es necesario
+      window.location.href = rutaArchivo;
     });
 
     // Funcionalidad para eliminar filas con doble clic

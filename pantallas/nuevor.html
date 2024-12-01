@@ -6,135 +6,87 @@
   <title>Nuevo Usuario</title>
   <link rel="stylesheet" href="cssD/styless.css">
   <style>
+    /* Estilos generales */
     body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-  }
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #000000, #000000);
+    }
 
-  /* Estilo del encabezado */
-  h1, h2 {
-    color: #333;
-  }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
 
-  h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
-  }
+    /* Contenedor del formulario */
+    .form-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
 
-  h2 {
-    font-size: 1.5em;
-    color: #4CAF50;
-    margin-bottom: 20px;
-  }
+    .form-container label {
+      font-weight: bold;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+    }
 
-  /* Barra de búsqueda */
-  .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
 
-  .search-bar input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    width: 250px;
-  }
+    .form-container input:focus {
+      border-color: #74b9ff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(116, 185, 255, 0.5);
+    }
 
-  .search-bar button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-  }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #45a049;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
 
-  .search-bar button:hover {
-    background-color: #45a049;
-  }
+    button:hover {
+      background-color: #45a049;
+      box-shadow: 0 5px 10px rgba(92, 82, 227, 0.3);
+    }
 
-  /* Botón nuevo usuario */
-  .new-user-button {
-    padding: 10px 20px;
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  .new-user-button:hover {
-    background-color: #007B9E;
-  }
-
-  /* Estilo de la tabla */
-  .table-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh; /* Centra la tabla en el medio de la pantalla */
-  }
-  
-  /* Estilo de la tabla */
-  table {
-    width: 80%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  table th, table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  table th {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-  }
-  
-  table tr:hover {
-    background-color: #f5f5f5;
-  }
-  
-  table td {
-    text-align: center;
-  }
-
-  button {
-    padding: 5px 10px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #e53935;
-  }
+    button:active {
+      background-color: #45a049;
+      box-shadow: 0 3px 6px rgba(74, 61, 212, 0.4);
+    }
   </style>
 </head>
 <body>
   <h1>Agregar Nuevo Usuario</h1>
+
   <div class="form-container">
     <label for="username">Nombre de Usuario:</label>
     <input type="text" id="username" placeholder="Ingrese nombre" required>
