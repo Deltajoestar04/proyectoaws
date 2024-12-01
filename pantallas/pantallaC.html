@@ -35,7 +35,7 @@
   <script type="module">
     // Redirigir al formulario de nuevo usuario
     document.getElementById('newUserButton').addEventListener('click', () => {
-      window.location.href = 'nuevor.html';
+      window.location.href = 'nuevoC.html';
     });
 
     // Funcionalidad para eliminar filas con doble clic
@@ -54,12 +54,13 @@
 
       rows.forEach(row => {
         const cells = row.getElementsByTagName('td'); // Obtener todas las celdas de la fila
-        const name = cells[0].textContent.toLowerCase(); // Nombre del usuario
-        const phone = cells[1].textContent.toLowerCase(); // Teléfono del usuario
-        const position = cells[2].textContent.toLowerCase(); // Puesto del usuario
+        const city = cells[0].textContent.toLowerCase(); // ciudad
+        const state = cells[1].textContent.toLowerCase(); // estado
+        const celphone = cells[2].textContent.toLowerCase(); // telefono
+        const actually = cells[3].textContent.toLowerCase(); // estado actual
 
         // Verifica si el texto de búsqueda coincide con el nombre, teléfono o puesto
-        if (name.includes(searchQuery) || phone.includes(searchQuery) || position.includes(searchQuery)) {
+        if (city.includes(searchQuery) || state.includes(searchQuery) || celphone.includes(searchQuery)||actually.includes(searchQuery)) {
           row.style.display = ''; // Mostrar fila si coincide
         } else {
           row.style.display = 'none'; // Ocultar fila si no coincide
