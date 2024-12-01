@@ -19,24 +19,18 @@ window.onload = function () {
   }
 
   // Generar filas dinámicamente
-  function cargarTabla() {
-    tableBody.innerHTML = ''; // Limpia las filas existentes
-    events.forEach(event => {
-      const row = document.createElement('tr'); // Crear una fila
+  events.forEach(event => {
+    const row = document.createElement('tr'); // Crear una fila
 
-      // Crear columnas y añadir datos
-      row.innerHTML = `
-        <td>${event.nombreE}</td>
-        <td>${event.descripcion}</td>
-        <td>${event.fecha}</td>
-      `;
+    // Crear columnas y añadir datos
+    row.innerHTML = `
+      <td>${event.nombreE}</td>
+      <td>${event.descripcion}</td>
+      <td>${event.fecha}</td>
+    `;
 
-      tableBody.appendChild(row); // Añadir la fila a la tabla
-    });
-  }
-
-  // Cargar la tabla inicial
-  cargarTabla();
+    tableBody.appendChild(row); // Añadir la fila a la tabla
+  });
 
   console.log("Filas generadas en la tabla");
 
@@ -54,34 +48,22 @@ window.onload = function () {
     const updatedEvents = controlf.listfecha;
     localStorage.setItem('events', JSON.stringify(updatedEvents));
 
-    // Recargar la tabla con el nuevo evento
-    cargarTabla();
+    // Volver a cargar la tabla con el nuevo evento
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+      <td>${nombreE}</td>
+      <td>${descripcion}</td>
+      <td>${fecha}</td>
+    `;
+    tableBody.appendChild(newRow);
     console.log(`Nuevo evento agregado: ${nombreE}, ${descripcion}, ${fecha}`);
   }
-
-  // Agregar un nuevo evento con prompt (simulando un formulario)
-  document.getElementById('newEventButton').addEventListener('click', () => {
-    const nombreE = prompt("Ingresa el nombre del evento:");
-    const descripcion = prompt("Ingresa la descripción:");
-    const fecha = prompt("Ingresa la fecha del evento (YYYY-MM-DD):");
-
-    if (nombreE && descripcion && fecha) {
-      controlf.agregar(nombreE, descripcion, fecha);
-
-      // Actualizar localStorage
-      const updatedEvents = controlf.listfecha;
-      localStorage.setItem('events', JSON.stringify(updatedEvents));
-
-      // Recargar la tabla con el nuevo evento
-      cargarTabla();
-    }
-  });
 };
 
 // Funcionalidad de eliminación y persistencia
 document.getElementById('eventTableBody').addEventListener('dblclick', function(event) {
   if (event.target.tagName.toLowerCase() === 'td') {
-    const confirmDelete = confirm("¿Estás seguro de que deseas borrar este evento?");
+    const confirmDelete = confirm("¿Estás seguro de que deseas borrar esta información?");
     if (confirmDelete) {
       const row = event.target.parentElement;
 
@@ -95,7 +77,7 @@ document.getElementById('eventTableBody').addEventListener('dblclick', function(
       // Actualizar el localStorage
       localStorage.setItem('events', JSON.stringify(updatedEvents));
 
-      // Recargar la tabla para reflejar los cambios
+      // Eliminar la fila de la tabla
       row.remove();
     }
   }

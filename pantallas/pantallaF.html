@@ -23,7 +23,7 @@
         <th>Fecha del Evento</th>
       </tr>
     </thead>
-    <tbody id="userTableBody">
+    <tbody id="eventTableBody">
       <!-- Filas de eventos generadas dinámicamente -->
     </tbody>
   </table>
@@ -32,7 +32,6 @@
 
   <!-- Vincula correctamente el archivo JavaScript externo -->
   <script type="module" src="./control/scriptF.js" defer></script>
-  
   <script type="module">
     document.getElementById('newEventButton').addEventListener('click', () => {
       const rutaArchivo = './nuevoF.html'; // Ajusta la ruta si es necesario
